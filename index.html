@@ -210,8 +210,8 @@
 <body>
     <div class="overlay" id="overlay">
         <div class="dialog">
-            <img src="a.jpg" alt="Cover Image" class="cover">
-            <img src="ac.jpg" alt="Admin Avatar" class="avatar">
+            <img src="a.jpg" alt="Bìa" class="cover" onerror="this.style.display='none';">
+            <img src="ac.jpg" alt="Avatar" class="avatar" onerror="this.src='https://i.imgur.com/dDoTlk8.png';">
             <h5>Cao Tiến Thành</h5>
             <p>Cao Tiến Thành DEMO CODE</p>
             <a href="https://t.me" class="btn btn-telegram" target="_blank" rel="noopener noreferrer">
@@ -226,23 +226,56 @@
 
     <div class="card">
         <div class="card-header">
-            <img src="noFilter.png" alt="Logo1">
+            <img src="noFilter.png" alt="tên 1">
             <span>Cao Tiến Thành</span>
         </div>
         <div class="card-note">Đẹp trai</div>
         <button class="button-64" role="button"><span class="text">GET KEY</span></button>
+        <!-- code mẫu  -->
+        <!-- <button class="button-64" role="button" onclick="window.location.href='https://example.com'">
+            <span class="text">GET KEY</span>
+          </button> -->
     </div>
     
     <div class="card">
         <div class="card-header">
-            <img src="noFilter.png" alt="Logo2">
+            <img src="noFilter.png" alt="tên 2">
             <span>Cao Tiến Thành</span>
         </div>
         <div class="card-note">Đẹp trai</div>
         <button class="button-64" role="button"><span class="text">GET KEY</span></button>
+        <!-- code mẫu  -->
+        <!-- <button class="button-64" role="button" onclick="window.location.href='https://example.com'">
+            <span class="text">GET KEY</span>
+          </button> -->
     </div>
 
     <script>
+          function cropImage(imageSelector, width, height) {
+            const image = document.querySelector(imageSelector);
+            if (image) {
+                image.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    const aspectRatio = image.naturalWidth / image.naturalHeight;
+                    let sx = 0, sy = 0, sWidth = image.naturalWidth, sHeight = image.naturalHeight;
+                    if (aspectRatio > width / height) {
+                        sWidth = sHeight * (width / height);
+                        sx = (image.naturalWidth - sWidth) / 2;
+                    } else {
+                        sHeight = sWidth / (width / height);
+                        sy = (image.naturalHeight - sHeight) / 2;
+                    }
+                    
+                    ctx.drawImage(image, sx, sy, sWidth, sHeight, 0, 0, width, height);
+                    image.src = canvas.toDataURL();
+                };
+            }
+        }
+        cropImage('.cover', 800, 296);
+
         const overlay = document.getElementById('overlay');
         const closeDialog = document.getElementById('closeDialog');
 
